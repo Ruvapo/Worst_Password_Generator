@@ -6,7 +6,7 @@ FONT = ("Agency", 18, 'normal')
 
 password = "Password: "
 
-turtle.colormode(255)
+turtle.colormode(255) #allows file to use RGB Colors
 character_options = string.hexdigits
 
 #setup screen
@@ -24,7 +24,7 @@ player.color("black")
 player.showturtle()
 player.direction = "stop"
 
-drops = []
+drops = [] #stores the letters
 
 for _ in range(20): #Amount of characters that fall
     new = turtle.Turtle()
@@ -35,7 +35,6 @@ for _ in range(20): #Amount of characters that fall
              random.randint(0, 255))
     new.setheading(-90)
 
-    # new.penup()
     x = random.randint(-200, 200)
     y = random.randint(300, 600)
     new.goto(x, y)
@@ -45,7 +44,7 @@ for _ in range(20): #Amount of characters that fall
     new.write(new.letter, font=FONT)
     drops.append(new)
 
-#movement
+#Defines movement left or right
 def turn_left():
   player.color('light green')
   player.forward(-10)
@@ -54,19 +53,23 @@ def turn_right():
   player.color('pink')
   player.forward(10)
 
+#Binds left and right keys to move the player piece
 window.listen()
 window.onkeypress(turn_left, "Left")
 window.onkeypress(turn_right, "Right")
 
+#Limit of how far the player piece can move
 max_left = -200
 max_right = 200
 
+#Prints the password
 new_password = turtle.Turtle()
 new_password.penup()
 new_password.goto(-180, -200)
 new_password.write(password, font=FONT)
 new_password.hideturtle()
 
+#Prints End
 end = turtle.Turtle()
 end.penup()
 end.goto(0,0)
@@ -85,13 +88,13 @@ while True:
     for drop in drops:
         drop.sety(drop.ycor() - .5) #speed of fall letters
 
-        if drop.ycor() < -300:
+        if drop.ycor() < -300: #generates new piece if the piece falls off the edge
             drop.goto(0, 400)
             drop.setx(random.randint(-200, 200))
             drop.sety(random.randint(300, 400))
             drop.letter = random.choice(character_options)
 
-        if drop.distance(player) < 20:
+        if drop.distance(player) < 20: #generates new piece if the player piece touches it
             drop.goto(0, 400)
             drop.setx(random.randint(-200, 200))
             drop.sety(random.randint(300, 400))
