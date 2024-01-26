@@ -69,6 +69,13 @@ new_password.goto(-180, -200)
 new_password.write(password, font=FONT)
 new_password.hideturtle()
 
+#Prints Instructions
+start = turtle.Turtle()
+start.penup()
+start.goto(-180, 250)
+start.write("Move Left/Right with Arrow Keys", font=FONT)
+start.hideturtle()
+
 #Prints End
 end = turtle.Turtle()
 end.penup()
